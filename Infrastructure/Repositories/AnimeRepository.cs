@@ -1,7 +1,6 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces;
+using Domain.Entities;
 using Infrastructure.Data;
-using Application.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -19,4 +18,5 @@ public class AnimeRepository : IAnimeRepository
         _context.Animes.Add(anime);
         await _context.SaveChangesAsync();
     }
+
 }
