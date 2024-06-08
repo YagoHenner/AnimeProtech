@@ -14,6 +14,11 @@ COPY . .
 WORKDIR "/src/WebApi"
 RUN dotnet build "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+FROM buildbase as migrations
+RUN dotnet tool install --version 6.0.9 --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+ENTRYPOINT dotnet-ef database update --project src/Infrastructure/ --startup-project src/WebApi/
+
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
