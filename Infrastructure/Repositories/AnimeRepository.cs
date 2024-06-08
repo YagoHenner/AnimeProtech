@@ -19,7 +19,7 @@ public class AnimeRepository : IAnimeRepository
         _context.Animes.Add(anime);
         await _context.SaveChangesAsync();
     }
-    public async Task<List<Anime>> GetAnimes()
+    public async Task<IEnumerable<Anime>> GetAnimes()
     {
         return await _context.Animes.Include(a => a.PalavrasChave).ToListAsync();
     }
