@@ -1,7 +1,5 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace Infrastructure.Data;
 
@@ -9,13 +7,27 @@ public class AnimeDbContext : DbContext
 {
     public AnimeDbContext(DbContextOptions<AnimeDbContext> options) : base(options) { }
     public DbSet<Anime> Animes { get; set; }
+    public DbSet<PalavraChave> PalavrasChave { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        var eTypes = modelBuilder.Model.GetEntityTypes();
+        foreach (var type in eTypes)
+        {
+            var foreignKeys = type.GetForeignKeys();
+            foreach (var foreignKey in foreignKeys)
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+        }
         modelBuilder.Entity<Anime>()
-            .Property(e => e.PalavrasChave)
-            .HasConversion(
-                v => string.Join(',', v),
-                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+            .HasMany(e => e.PalavrasChave)
+            .WithMany(e => e.Animes);
+
+        modelBuilder.Entity<PalavraChave>()
+            .HasKey(e => e.Id);
+        
+        modelBuilder.Entity<Anime>()
+            .HasKey(e => e.Id);
     }
 }

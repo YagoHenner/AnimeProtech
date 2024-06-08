@@ -8,6 +8,6 @@ public class AnimeProfile : Profile
 {
     public AnimeProfile()
     {
-        CreateMap<CreateAnime, Anime>();
+        CreateMap<CreateAnime, Anime>().ForMember(dest => dest.PalavrasChave, opt => opt.MapFrom(src => src.PalavrasChave.Select(pc => new PalavraChave { Nome = pc })));
     }
 }
