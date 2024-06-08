@@ -34,4 +34,11 @@ public class AnimeRepository : IAnimeRepository
         _context.Animes.Remove(anime);
         await _context.SaveChangesAsync();
     }
+    public async Task UpdateAnime(Anime anime)
+    {
+        _context.Entry(anime).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+    }
+
+    
 }

@@ -8,4 +8,6 @@ public interface IAnimeRepository
     Task<List<Anime>> GetAnimes();
     Task<Anime?> GetAnimeById(int id);
     Task DeleteAnime(Anime anime);
+
+    Task UpdateAnime(Anime anime);
 }

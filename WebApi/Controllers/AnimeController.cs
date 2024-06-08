@@ -1,6 +1,7 @@
 using Application.Features.Create;
 using Application.Features.DeleteAnime;
 using Application.Features.GetAnime;
+using Application.Features.UpdateAnime;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,17 @@ public class AnimeController : ControllerBase
 
         if (result.IsFailed)
             return NotFound(result.Errors);
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateAnime([FromRoute] int id, [FromBody] UpdateAnime updateAnime)
+    {
+        updateAnime.Id = id;
+        var result = await _mediator.Send(updateAnime);
+
+        if (result.IsFailed)
+            return BadRequest(result.Errors);
         return NoContent();
     }
 }
