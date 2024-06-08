@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data;
 
@@ -11,18 +12,11 @@ public class AnimeDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var eTypes = modelBuilder.Model.GetEntityTypes();
-        foreach (var type in eTypes)
-        {
-            var foreignKeys = type.GetForeignKeys();
-            foreach (var foreignKey in foreignKeys)
-            {
-                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
-            }
-        }
         modelBuilder.Entity<Anime>()
             .HasMany(e => e.PalavrasChave)
-            .WithMany(e => e.Animes);
+            .WithMany(e => e.Animes)
+            .UsingEntity(j => j
+                .ToTable("AnimePalavraChave"));
 
         modelBuilder.Entity<PalavraChave>()
             .HasKey(e => e.Id);

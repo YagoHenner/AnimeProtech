@@ -23,4 +23,15 @@ public class AnimeRepository : IAnimeRepository
     {
         return await _context.Animes.Include(a => a.PalavrasChave).ToListAsync();
     }
+
+    public async Task<Anime?> GetAnimeById(int id)
+    {
+        return await _context.Animes.Include(a => a.PalavrasChave).FirstOrDefaultAsync(e => e.Id == id);
+    }
+
+    public async Task DeleteAnime(Anime anime)
+    {
+        _context.Animes.Remove(anime);
+        await _context.SaveChangesAsync();
+    }
 }

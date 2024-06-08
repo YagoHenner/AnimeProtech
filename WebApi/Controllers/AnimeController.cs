@@ -1,4 +1,5 @@
 using Application.Features.Create;
+using Application.Features.DeleteAnime;
 using Application.Features.GetAnime;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ public class AnimeController : ControllerBase
         if (result.IsFailed)
             return BadRequest(result.Errors);
 
-        return Ok(result.Successes);
+        return NoContent();
     }
 
     [HttpPost("get")]
@@ -34,5 +35,16 @@ public class AnimeController : ControllerBase
             return BadRequest(result.Errors);
 
         return Ok(result.Value);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAnime([FromRoute] int id)
+    {
+        var deleteAnime = new DeleteAnime { Id = id };
+        var result = await _mediator.Send(deleteAnime);
+
+        if (result.IsFailed)
+            return NotFound(result.Errors);
+        return NoContent();
     }
 }

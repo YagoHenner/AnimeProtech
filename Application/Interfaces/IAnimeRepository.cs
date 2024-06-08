@@ -6,4 +6,6 @@ public interface IAnimeRepository
 {
     Task AddAsync(Anime anime);
     Task<List<Anime>> GetAnimes();
+    Task<Anime?> GetAnimeById(int id);
+    Task DeleteAnime(Anime anime);
 }
