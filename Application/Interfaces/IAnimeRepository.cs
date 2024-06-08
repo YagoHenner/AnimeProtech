@@ -5,4 +5,5 @@ namespace Application.Interfaces;
 public interface IAnimeRepository
 {
     Task AddAsync(Anime anime);
+    Task<List<Anime>> GetAnimes();
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -18,5 +19,8 @@ public class AnimeRepository : IAnimeRepository
         _context.Animes.Add(anime);
         await _context.SaveChangesAsync();
     }
-
+    public async Task<List<Anime>> GetAnimes()
+    {
+        return await _context.Animes.Include(a => a.PalavrasChave).ToListAsync();
+    }
 }

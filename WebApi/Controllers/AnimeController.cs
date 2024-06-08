@@ -1,4 +1,5 @@
 using Application.Features.Create;
+using Application.Features.GetAnime;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,5 +24,15 @@ public class AnimeController : ControllerBase
             return BadRequest(result.Errors);
 
         return Ok(result.Successes);
+    }
+
+    [HttpPost("get")]
+    public async Task<IActionResult> GetAnimes(GetAnime anime)  
+    {
+        var result = await _mediator.Send(anime);
+        if (result.IsFailed)
+            return BadRequest(result.Errors);
+
+        return Ok(result.Value);
     }
 }
