@@ -3,25 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{93523F74-CF9E-470D-B2EB-C741646A26AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{93523F74-CF9E-470D-B2EB-C741646A26AF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6} = {5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{473F5A96-9A5D-4401-9A4F-79782118F70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{473F5A96-9A5D-4401-9A4F-79782118F70E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6} = {5C6DB76B-3706-4EFA-8C8C-33A06D7D27D6}
 		{93523F74-CF9E-470D-B2EB-C741646A26AF} = {93523F74-CF9E-470D-B2EB-C741646A26AF}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{DFCBF08F-CD5C-4818-8346-E8E312B8C9F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{DFCBF08F-CD5C-4818-8346-E8E312B8C9F4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{93523F74-CF9E-470D-B2EB-C741646A26AF} = {93523F74-CF9E-470D-B2EB-C741646A26AF}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6B9643D4-0464-4872-B1C6-AAF6528A315C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D68ABDF6-C542-4539-90D4-28C8699A0C3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DFCBF08F-CD5C-4818-8346-E8E312B8C9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFCBF08F-CD5C-4818-8346-E8E312B8C9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFCBF08F-CD5C-4818-8346-E8E312B8C9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D68ABDF6-C542-4539-90D4-28C8699A0C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68ABDF6-C542-4539-90D4-28C8699A0C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68ABDF6-C542-4539-90D4-28C8699A0C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68ABDF6-C542-4539-90D4-28C8699A0C3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
