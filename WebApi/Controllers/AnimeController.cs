@@ -52,8 +52,7 @@ public class AnimeController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAnime([FromRoute] int id, [FromBody] UpdateAnime updateAnime)
     {
-        updateAnime.Id = id;
-        var result = await _mediator.Send(updateAnime);
+        var result = await _mediator.Send(new UpdateAnimeHandler.UpdateAnimeCommand(id, updateAnime));
 
         if (result.IsFailed)
             return BadRequest(result.Errors);

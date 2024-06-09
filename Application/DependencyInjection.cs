@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using FluentValidation;
 using Application.Features.DeleteAnime;
+using Application.Features.UpdateAnime;
 
 namespace Application;
 
@@ -14,6 +15,7 @@ public static class DependencyInjection
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssemblyContaining<CreateAnimeValidator>();
         services.AddValidatorsFromAssemblyContaining<DeleteAnimeValidator>();
+        services.AddValidatorsFromAssemblyContaining<UpdateAnimeValidator>();
 
         return services;
     }
