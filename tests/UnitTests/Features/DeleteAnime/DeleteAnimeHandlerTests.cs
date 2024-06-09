@@ -7,6 +7,8 @@ using FluentValidation;
 using FluentValidation.Results;
 using NSubstitute;
 
+namespace UnitTests.Features.DeleteAnimeTests;
+
 public class DeleteAnimeHandlerTests
 {
     private readonly IAnimeRepository _animeRepository;

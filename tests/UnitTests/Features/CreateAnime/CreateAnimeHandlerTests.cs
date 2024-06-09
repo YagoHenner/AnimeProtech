@@ -7,6 +7,8 @@ using FluentValidation;
 using FluentValidation.Results;
 using NSubstitute;
 
+namespace UnitTests.Features.CreateAnimeTests;
+
 public class CreateAnimeHandlerTests
 {
     private readonly IAnimeRepository _animeRepository;
