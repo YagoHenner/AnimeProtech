@@ -28,8 +28,8 @@ public class AnimeController : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("get")]
-    public async Task<IActionResult> GetAnimes(GetAnime anime)  
+    [HttpGet]
+    public async Task<IActionResult> GetAnimes([FromQuery] GetAnime anime)  
     {
         var result = await _mediator.Send(anime);
         if (result.IsFailed)

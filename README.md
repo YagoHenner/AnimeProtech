@@ -85,6 +85,6 @@ Considere BASE_URL a url que seu projeto está sendo executado. O padrão é htt
 |HTTP Method|URL|Description|
 |---|---|---|
 |`POST`|BASEURL/api/Anime | Criar novo anime |
-|`POST`|BASE_URL/api/Anime/get | Listar animes, filtrados ou não |
+|`GET`|BASE_URL/api/Anime | Listar animes, filtrados ou não |
 |`DELETE`|BASE_URL/api/Anime/{id} | Deletar Anime pelo ID |
 |`PUT`|BASE_URL/api/Anime/{id} | Modificar anime pelo seu id e parâmetros |
