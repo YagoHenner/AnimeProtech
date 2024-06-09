@@ -30,7 +30,15 @@ public class GetAnimeHandler(IAnimeRepository animeRepository, IMapper mapper) :
             animes = animes.Where(a => request.PalavraChave.Any(pc => a.Resumo.Contains(pc)));
         }
 
-        var result = _mapper.Map<IEnumerable<GetAnimeDto>>(animes);
-        return Result.Ok(result);
+        var pagina = request.Pagina ?? 1;
+        var quantidadePorPagina = request.QuantidadePorPagina ?? animes.Count();
+
+        var totalAnimes = animes.Count();
+        var animesPaginados = animes
+            .Skip((pagina - 1) * quantidadePorPagina)
+            .Take(quantidadePorPagina);
+
+        var result = _mapper.Map<IEnumerable<GetAnimeDto>>(animesPaginados);
+        return Result.Ok(result).WithSuccess($"Página {pagina} de {Math.Ceiling((double)totalAnimes / quantidadePorPagina)}");
     }
 }
