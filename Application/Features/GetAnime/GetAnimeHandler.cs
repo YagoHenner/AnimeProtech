@@ -2,17 +2,24 @@
 using AutoMapper;
 using Domain.Entities;
 using FluentResults;
+using FluentValidation;
 using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Features.GetAnime;
 
-public class GetAnimeHandler(IAnimeRepository animeRepository, IMapper mapper) : IRequestHandler<GetAnime, Result<IEnumerable<GetAnimeDto>>>
+public class GetAnimeHandler(IAnimeRepository animeRepository, IMapper mapper, IValidator<GetAnime> validator) : IRequestHandler<GetAnime, Result<IEnumerable<GetAnimeDto>>>
 {
     private readonly IAnimeRepository _animeRepository = animeRepository;
     private readonly IMapper _mapper = mapper;
 
     public async Task<Result<IEnumerable<GetAnimeDto>>> Handle(GetAnime request, CancellationToken cancellationToken)
     {
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!validationResult.IsValid)
+            return Result.Fail(validationResult.Errors.Select(e => e.ErrorMessage));
+
         var animes = await _animeRepository.GetAnimes();
 
         if (!String.IsNullOrEmpty(request.Nome))
