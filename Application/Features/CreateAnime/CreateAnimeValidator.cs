@@ -1,5 +1,4 @@
-﻿using Application.Features.Create;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Application.Features.Create;
 
@@ -10,6 +9,5 @@ public class CreateAnimeValidator : AbstractValidator<CreateAnime>
         RuleFor(x => x.Nome).NotEmpty();
         RuleFor(x => x.Diretor).NotEmpty();
         RuleFor(x => x.Resumo).NotEmpty();
-        RuleFor(x => x.PalavrasChave).NotEmpty();
     }
 }
