@@ -1,4 +1,4 @@
-# AnimeAPI
+# AnimesCRUD
 
 Uma API RESTful para gerenciar informações sobre animes. Ela permite criar, ler, modificar e deletar registros de animes, com funcionalidades de filtragem e paginação na listagem.
 
